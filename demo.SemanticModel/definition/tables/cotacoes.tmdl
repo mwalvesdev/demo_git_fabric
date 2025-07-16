@@ -7,29 +7,6 @@ table cotacoes
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Cotação corrigida' = ```
-			
-			
-			VAR __DataCtx = MAX(calendario[Data]) 
-			
-			VAR __UltimaDataComCotacao = 
-			    CALCULATE(
-			        LASTNONBLANK(calendario[Data], [Cotação do dia]),
-			        calendario[Data] <= __DataCtx
-			    )
-			
-			RETURN
-			    CALCULATE(
-			        [Cotação do dia],
-			        calendario[Data] = __UltimaDataComCotacao
-			    )
-			
-			```
-		displayFolder: Medidas
-		lineageTag: faea336a-b4ee-4246-a90a-f07e3bd5e976
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column Moeda
 		dataType: string
 		displayFolder: Colunas
